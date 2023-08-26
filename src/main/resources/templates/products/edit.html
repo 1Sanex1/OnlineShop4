@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit product</title>
+</head>
+<body>
+<form th:method="Patch" th:action="@{/products/{id}(id=${product.getId()})}" th:object="${product}">
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+    <br/>
+    <label for="info">Enter info: </label>
+    <input type="text" th:field="*{info}" id="info"/>
+    <div style="color:red" th:if="${#fields.hasErrors('info')}" th:errors="*{info}"></div>
+    <br/>
+    <label for="count">Enter count: </label>
+    <input type="number" th:field="*{count}" id="count"/>
+    <div style="color:red" th:if="${#fields.hasErrors('count')}" th:errors="*{count}"></div>
+    <br/>
+    <label for="cost">Enter cost: </label>
+    <input type="number" th:field="*{cost}" id="cost"/>
+    <div style="color:red" th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></div>
+    <br/>
+    <input style="color:green" type="submit" value="Update"/>
+</form>
+
+<p><a href="/products">Products</a></p>
+
+<p><a href="/home">Home</a></p>
+
+</body>
+</html>

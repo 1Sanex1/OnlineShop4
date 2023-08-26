@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All products</title>
+</head>
+<body>
+
+<p th:if="${! isVisitor}" th:text="${'Current: ' + usersService.getCurrent().getLogin()}"></p>
+
+<div th:each="product : ${products}">
+    <a th:if="${product.getCount() > 0}" th:href="@{/products/{id}(id=${product.getId()})}" th:text="${product.getName() + ': ' + product.getCost() + '$, ' + product.getCount() + ' packs'}"></a>
+</div>
+
+<hr/>
+
+<p><a th:if="${isAdmin}" href="/products/new">Create</a></p>
+
+<p><a href="/home">Home</a></p>
+
+<p><a th:if="${isShopper}" href="/products/basket">Basket</a></p>
+
+
+
+
+
+</body>
+</html>

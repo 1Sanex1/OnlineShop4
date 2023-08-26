@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<p><a th:if="${isAdmin || isShopper}" href="/products">Products</a></p>
+
+<p><a th:if="${isAdmin}" href="/users">Users</a></p>
+
+<form th:action="@{/users/logout}" th:method="POST">
+    <input type="submit" value="Logout"/>
+</form>
+
+
+</body>
+</html>

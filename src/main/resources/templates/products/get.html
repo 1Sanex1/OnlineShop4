@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product</title>
+</head>
+<body>
+<p th:text="${'Name: ' + product.getName()}"></p>
+<p th:text="${'Cost: ' + product.getCost() + '$'}"></p>
+<p th:text="${'Count: ' + product.getCount() + ' packs'}"></p>
+<p th:text="${'Desctiption: ' + product.getInfo()}"></p>
+
+<p th:if="${isShopper}" th:text="${'Purchased: ' + usersService.getProductCount(product.getId()) + ' packs'}"></p>
+
+<form th:if="${isShopper}" th:method="Post" th:action="@{/users/incProduct/{id}(id=${product.getId()})}"  th:object="${count}">
+    <label for="incCount">Take: </label>
+    <input type="number" th:field="*{count}" id="incCount"/>
+    <div style="color:red" th:if="${#fields.hasErrors('count')}" th:errors="*{count}"></div>
+    <input type="submit" value="+"/>
+</form>
+
+<form th:if="${isShopper}" th:method="Post" th:action="@{/users/decProduct/{id}(id=${product.getId()})}"  th:object="${count}">
+    <label for="decCount">Give: </label>
+    <input type="number" th:field="*{count}" id="decCount"/>
+    <div style="color:red" th:if="${#fields.hasErrors('count')}" th:errors="*{count}"></div>
+    <input type="submit" value="-"/>
+</form>
+
+<form th:if="${isAdmin}" th:action="@{/products/{id}/edit(id=${product.getId()})}">
+    <input type="submit" value="Edit"/>
+</form>
+
+<br/>
+
+<form th:if="${isAdmin}" th:method="Delete" th:action="@{/products/{id}(id=${product.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+<hr/>
+
+<p><a th:if="${isShopper}" href="/products/basket">Basket</a></p>
+
+<p><a href="/products">Products</a></p>
+
+<p><a href="/home">Home</a></p>
+
+</body>
+</html>

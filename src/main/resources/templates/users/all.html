@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All users</title>
+</head>
+<body>
+
+<p th:text="${'Current: ' + current.getLogin() + ', ' + current.getEmail()}"></p>
+
+<div th:each="user : ${users}">
+    <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getLogin() + ', ' + user.getEmail()}"></a>
+</div>
+
+<hr/>
+
+<a href="/users/new">Create</a>
+
+<a href="/home">Home</a>
+</body>
+</html>
